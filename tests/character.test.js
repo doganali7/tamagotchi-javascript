@@ -24,12 +24,4 @@ describe("growUp", () => {
 
     expect(character.age).toEqual(1);
   });
-
-  it("increments the age by 1", () => {
-    const character = new Character("Mametchi");
-
-    character.growUp();
-
-    expect(character.age).toEqual(1);
-  });
 });
