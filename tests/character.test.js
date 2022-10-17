@@ -22,8 +22,6 @@ describe("growUp", () => {
     const character = new Character("Mametchi");
     character.growUp();
     expect(character.age).toEqual(1);
-    // expect(character.hunger).toEqual(5);
-    // expect(character.fitness).toEqual(7);
   });
 
   it("increments the hunger by 5", () => {
@@ -36,5 +34,25 @@ describe("growUp", () => {
     const character = new Character("Mametchi");
     character.growUp();
     expect(character.fitness).toEqual(7);
+  });
+});
+
+describe("walk", () => {
+  it("increases fitness by 4", () => {
+    const character = new Character("Mametchi");
+
+    character.fitness = 4;
+    character.walk();
+
+    expect(character.fitness).toEqual(8);
+  });
+
+  it("increases fitness by to a maximum of 10", () => {
+    const character = new Character("Mametchi");
+
+    character.fitness = 8;
+    character.walk();
+
+    expect(character.fitness).toEqual(10);
   });
 });

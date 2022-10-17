@@ -1,3 +1,4 @@
+const MAXIMUM_FITNESS = 10;
 function Character(name) {
   this.name = name;
   this.age = 0;
@@ -10,14 +11,25 @@ Character.prototype.growUp = function () {
   this.fitness -= 3;
 };
 
+Character.prototype.walk = function () {
+  if (this.fitness + 4 <= MAXIMUM_FITNESS) {
+    this.fitness += 4;
+  } else {
+    this.fitness = MAXIMUM_FITNESS;
+  }
+};
+
+// const mametchi = new Character("Mametchi");
+// const gozarutchi = new Character("Gozarutchi");
+
 const mametchi = new Character("Mametchi");
-const gozarutchi = new Character("Gozarutchi");
+const mametchi2 = new Character("Mametchi");
 
 mametchi.growUp = function () {
   this.age += 4;
 };
 
-gozarutchi.growUp = function () {
+mametchi2.growUp = function () {
   this.age += 5;
 };
 
