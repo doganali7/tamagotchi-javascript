@@ -71,3 +71,31 @@ describe("hunger", () => {
     expect(character.hunger).toEqual(0);
   });
 });
+
+describe("checkUP", () => {
+  it("check if pet's need to eat and walk", () => {
+    const character = new Character("Mametchi");
+    character.fitness = 1;
+    character.hunger = 6;
+    character.checkUp();
+    expect.stringMatching(character.checkUp)("I am hungry and I need a walk");
+  });
+  it("check if pet's need to walk", () => {
+    const character = new Character("Mametchi");
+    character.fitness = 2;
+    character.checkUp();
+    expect(character.checkUp).toEqual("I need a walk");
+  });
+  it("check if pet's need to eat", () => {
+    const character = new Character("Mametchi");
+    character.hunger = 1;
+    character.checkUp();
+    expect(character.checkUp).toEqual("I am hungry");
+  });
+  it("check if pet's don't need anything", () => {
+    const character = new Character("Mametchi");
+    character.fitness = 5;
+    character.hunger = 1;
+    expect(character.checkUp).toEqual("I feel great!");
+  });
+});
