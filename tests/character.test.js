@@ -56,3 +56,18 @@ describe("walk", () => {
     expect(character.fitness).toEqual(10);
   });
 });
+
+describe("hunger", () => {
+  it("decreases hunger by 3", () => {
+    const character = new Character("Mametchi");
+    character.hunger = 3;
+    character.feed();
+    expect(character.hunger).toEqual(0);
+  });
+  it("decreases hunger by 3", () => {
+    const character = new Character("Mametchi");
+    character.hunger = 1;
+    character.feed();
+    expect(character.hunger).toEqual(0);
+  });
+});

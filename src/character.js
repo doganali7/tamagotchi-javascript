@@ -1,4 +1,5 @@
 const MAXIMUM_FITNESS = 10;
+const MINIMUM_HUNGER = 0;
 function Character(name) {
   this.name = name;
   this.age = 0;
@@ -16,6 +17,14 @@ Character.prototype.walk = function () {
     this.fitness += 4;
   } else {
     this.fitness = MAXIMUM_FITNESS;
+  }
+};
+
+Character.prototype.feed = function () {
+  if (this.hunger - 3 >= MINIMUM_HUNGER) {
+    this.hunger -= 3;
+  } else {
+    this.hunger = MINIMUM_HUNGER;
   }
 };
 
