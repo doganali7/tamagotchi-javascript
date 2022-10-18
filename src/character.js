@@ -77,9 +77,6 @@ Character.prototype.isAlive = function () {
   return this.age < 30 && this.hunger < 10 && this.fitness > 0;
 };
 
-// const mametchi = new Character("Mametchi");
-// const gozarutchi = new Character("Gozarutchi");
-
 const mametchi = new Character("Mametchi");
 const mametchi2 = new Character("Mametchi");
 
