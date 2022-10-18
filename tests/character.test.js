@@ -35,6 +35,15 @@ describe("growUp", () => {
     character.growUp();
     expect(character.fitness).toEqual(7);
   });
+  it("throws an error if the character is not alive", () => {
+    const character = new Character("Mametchi");
+
+    character.age = 31;
+
+    expect(() => character.growUp()).toThrow(
+      "Your character is no longer alive"
+    );
+  });
 });
 
 describe("walk", () => {
@@ -55,6 +64,13 @@ describe("walk", () => {
 
     expect(character.fitness).toEqual(10);
   });
+  it("throws an error if the character is not alive", () => {
+    const character = new Character("Mametchi");
+
+    character.fitness = 0;
+
+    expect(() => character.walk()).toThrow("Your character is no longer alive");
+  });
 });
 
 describe("hunger", () => {
@@ -70,32 +86,48 @@ describe("hunger", () => {
     character.feed();
     expect(character.hunger).toEqual(0);
   });
+  it("throws an error if the character is not alive", () => {
+    const character = new Character("Mametchi");
+
+    character.hunger = 10;
+    expect(() => character.feed()).toThrow("Your character is no longer alive");
+  });
 });
 
 describe("checkUP", () => {
-  it("check if pet's need to eat and walk", () => {
+  it("check if character's need to eat and walk", () => {
     const character = new Character("Mametchi");
     character.fitness = 1;
     character.hunger = 6;
     character.checkUp();
     expect("I am hungry and I need a walk");
   });
-  it("check if pet's need to walk", () => {
+  it("check if character's need to walk", () => {
     const character = new Character("Mametchi");
     character.fitness = 2;
     character.checkUp();
     expect("I need a walk");
   });
-  it("check if pet's need to eat", () => {
+  it("check if character's need to eat", () => {
     const character = new Character("Mametchi");
     character.hunger = 1;
     character.checkUp();
     expect("I am hungry");
   });
-  it("check if pet's don't need anything", () => {
+  it("check if character's don't need anything", () => {
     const character = new Character("Mametchi");
     character.fitness = 5;
     character.hunger = 1;
     expect("I feel great!");
+  });
+  it("throws an error if the character is not alive", () => {
+    const character = new Character("Mametchi");
+
+    character.hunger = 0;
+    character.fitness = 0;
+
+    expect(() => character.checkUp()).toThrow(
+      "Your character is no longer alive"
+    );
   });
 });

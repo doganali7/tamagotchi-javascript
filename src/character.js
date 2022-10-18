@@ -8,39 +8,60 @@ function Character(name) {
   this.fitness = 10;
   this.isAlive;
 }
+
+Character.prototype = {
+  get isAlive() {
+    return this.age < 30 && this.hunger < 10 && this.fitness > 0;
+  },
+};
+
 Character.prototype.growUp = function () {
+  if (!this.isAlive) {
+    throw new Error("Your character is no longer alive");
+  }
   if (this.age + 1 <= MAXIMUM_AGE) {
     this.age += 1;
     this.hunger += 5;
     this.fitness -= 3;
-    return true;
+    this.isAlive = true;
   } else {
     MAXIMUM_AGE = 0;
-    return false;
+    this.isAlive = false;
   }
 };
 
 Character.prototype.walk = function () {
+  if (!this.isAlive) {
+    throw new Error("Your character is no longer alive");
+  }
   if (this.fitness + 4 <= MAXIMUM_FITNESS) {
     this.fitness += 4;
-    return true;
+    this.isAlive = true;
   } else {
     this.fitness = MAXIMUM_FITNESS;
-    return false;
+    this.isAlive = false;
   }
+
+  this.isAlive = this.age < 30 && this.hunger < 10 && this.fitness > 0;
 };
 
 Character.prototype.feed = function () {
+  if (!this.isAlive) {
+    throw new Error("Your character is no longer alive");
+  }
   if (this.hunger - 3 >= MINIMUM_HUNGER) {
     this.hunger -= 3;
-    return true;
+    this.isAlive = true;
   } else {
     this.hunger = MINIMUM_HUNGER;
-    return false;
+    this.isAlive = false;
   }
 };
 
 Character.prototype.checkUp = function () {
+  if (!this.isAlive) {
+    throw new Error("Your character is no longer alive");
+  }
   if (this.fitness <= 3 && this.hunger >= 5) {
     return "I am hungry and I need a walk";
   } else if (this.fitness <= 3) {
@@ -50,6 +71,10 @@ Character.prototype.checkUp = function () {
   } else if (this.fitness >= 3 && this.hunger <= 5) {
     return "I feel great!";
   }
+};
+
+Character.prototype.isAlive = function () {
+  return this.age < 30 && this.hunger < 10 && this.fitness > 0;
 };
 
 // const mametchi = new Character("Mametchi");
